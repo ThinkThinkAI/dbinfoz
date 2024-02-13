@@ -1,6 +1,6 @@
 {
-  "name": "dbinfo",
-  "version": "0.1.0",
+  "name": "dbinfoz",
+  "version": "0.1.1",
   "description": "Get Database Info and Table Schemas",
   "main": "source/index.js",
   "scripts": {

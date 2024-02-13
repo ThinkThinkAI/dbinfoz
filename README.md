@@ -1,4 +1,4 @@
-# 🌐 Universal Database Adapter
+# 🌐 DBINFOZ Universal Database Adapter
 
 A simple and unified interface to interact with different types of SQL databases including PostgreSQL, MySQL, and SQLite.
 
@@ -14,7 +14,7 @@ Supports PostgreSQL, MySQL, and SQLite databases.
 ## 🛠 Installation
 
 ```bash
-npm install dbinfo
+npm install dbinfoz
 ```
 
 ## 🚀 Usage
