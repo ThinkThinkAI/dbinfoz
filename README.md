@@ -92,12 +92,12 @@ getAllTablesAndSchemas(postgresAdapter, 'yourDatabaseName');
 
 ## 💡 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/rootedbox/dbinfo/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/rootedbox/dbinfoz/issues).
 
 ## 📝 License
 
-[MIT](https://github.com/rootedbox/dbinfo/blob/main/LICENSE) © Jason Jacobs
+[MIT](https://github.com/rootedbox/dbinfoz/blob/main/LICENSE) © Jason Jacobs
 
 ## 📁 Repository
 
-The source code is available at [GitHub](https://github.com/rootedbox/dbinfo).
+The source code is available at [GitHub](https://github.com/rootedbox/dbinfoz).
