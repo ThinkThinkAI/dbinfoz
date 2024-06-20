@@ -1,10 +1,10 @@
 const sqlite3 = require("sqlite3").verbose();
 const { promisify } = require("util");
-const DatabaseAdapter = require("./DatabaseAdapter"); 
+const DatabaseAdapter = require("./DatabaseAdapter");
 
 class SqliteAdapter extends DatabaseAdapter {
   constructor(config) {
-    super();
+    super(config);
     const db = new sqlite3.Database(config.filename);
     this.db = db;
     this.db.all = promisify(db.all.bind(db));
@@ -13,17 +13,15 @@ class SqliteAdapter extends DatabaseAdapter {
   }
 
   async listDatabases() {
-    return [`${this.db.filename}`]; 
+    return [`${this.db.filename}`];
   }
 
-  async listTables(dbName) {
-    // Ignoring dbName since it's not applicable for SQLite
+  async listTables() {
     const query = `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';`;
     return this.db.all(query).then((rows) => rows.map((row) => row.name));
   }
 
   async getTableSchema(tableName) {
-    // tableName is used directly to get the schema via PRAGMA
     const query = `PRAGMA table_info(${tableName});`;
     return this.db.all(query).then((rows) =>
       rows.reduce((schema, { name, type, notnull, dflt_value, pk }) => {
@@ -38,8 +36,7 @@ class SqliteAdapter extends DatabaseAdapter {
     );
   }
 
-  async getAllTablesAndSchemas(dbName) {
-    // Ignoring dbName since it's not applicable for SQLite
+  async getAllTablesAndSchemas() {
     const tables = await this.listTables();
     const schemaPromises = tables.map((tableName) =>
       this.getTableSchema(tableName)
@@ -49,6 +46,10 @@ class SqliteAdapter extends DatabaseAdapter {
       acc[tableName] = schemas[idx];
       return acc;
     }, {});
+  }
+
+  async runQuery(query) {
+    return this.db.all(query);
   }
 
   close() {

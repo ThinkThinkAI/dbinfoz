@@ -21,7 +21,7 @@ npm install dbinfoz
 
 First, require the package and use the factory function to get an instance of the database adapter based on the type of database you're working with:
 
-```
+```javascript
 const getDatabaseAdapter = require('dbinfo');
 
 // For PostgreSQL
@@ -52,42 +52,50 @@ const sqliteAdapter = getDatabaseAdapter('sqlite', sqliteConfig);
 ```
 
 ## 📖 Examples
-Listing Databases
-```
-async function listDatabases(adapter) {
-  const databases = await adapter.listDatabases();
-  console.log(databases);
-}
 
-listDatabases(postgresAdapter); // Example for PostgreSQL
-```
+```javascript
+const getDatabaseAdapter = require('./index');
 
-Listing Tables
-```
-async function listTables(adapter) {
-  const tables = await adapter.listTables('yourDatabaseName'); // For SQLite, the dbName is ignored
-  console.log(tables);
-}
+// Configuration for the required database
+const config = {
+  host: 'localhost', // For MySQL and PostgreSQL
+  user: 'root', // For MySQL
+  password: 'password', // For MySQL and PostgreSQL
+  database: 'mydb',
+  filename: './mydb.sqlite' // For SQLite
+};
 
-listTables(mysqlAdapter); // Example for MySQL
-```
-Getting Table Schema
-```
-async function getTableSchema(adapter, tableName) {
-  const schema = await adapter.getTableSchema(tableName);
-  console.log(schema);
-}
+// Specify the database type ('sqlite', 'mysql', 'postgres')
+const type = 'sqlite'; // Change as needed
 
-getTableSchema(sqliteAdapter, 'yourTableName');
-```
-Getting All Tables and Their Schemas
-```
-async function getAllTablesAndSchemas(adapter, dbName) {
-  const tablesAndSchemas = await adapter.getAllTablesAndSchemas(dbName); // For SQLite, the dbName is ignored
-  console.log(tablesAndSchemas);
-}
+(async () => {
+  try {
+    const dbAdapter = getDatabaseAdapter(type, config);
 
-getAllTablesAndSchemas(postgresAdapter, 'yourDatabaseName');
+    // List databases
+    const databases = await dbAdapter.listDatabases();
+    console.log('Databases:', databases);
+
+    // List tables
+    const tables = await dbAdapter.listTables();
+    console.log('Tables:', tables);
+
+    // Get table schema
+    const schema = await dbAdapter.getTableSchema('my_table');
+    console.log('Schema:', schema);
+
+    // Run a custom query
+    const result = await dbAdapter.runQuery('SELECT * FROM my_table');
+    console.log('Query Result:', result);
+
+    // Close the connection (SQLite specific method for example purposes)
+    if (dbAdapter.close) {
+      await dbAdapter.close();
+    }
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+})();
 ```
 
 ## 💡 Contributing

@@ -3,7 +3,7 @@ const DatabaseAdapter = require("./DatabaseAdapter");
 
 class PostgresAdapter extends DatabaseAdapter {
   constructor(config) {
-    super();
+    super(config);
     this.pool = new Pool(config);
   }
 
@@ -19,7 +19,7 @@ class PostgresAdapter extends DatabaseAdapter {
     }
   }
 
-  async listTables(dbName) {
+  async listTables() {
     const query = `
       SELECT table_name 
       FROM information_schema.tables 
@@ -27,7 +27,7 @@ class PostgresAdapter extends DatabaseAdapter {
     `;
     const client = await this.pool.connect();
     try {
-      const res = await client.query(query, [dbName]);
+      const res = await client.query(query, [this.config.database]);
       return res.rows.map((row) => row.table_name);
     } finally {
       client.release();
@@ -52,13 +52,23 @@ class PostgresAdapter extends DatabaseAdapter {
     }
   }
 
-  async getAllTablesAndSchemas(dbName) {
-    const tables = await this.listTables(dbName);
+  async getAllTablesAndSchemas() {
+    const tables = await this.listTables();
     const schemas = {};
     for (const table of tables) {
       schemas[table] = await this.getTableSchema(table);
     }
     return schemas;
+  }
+
+  async runQuery(query) {
+    const client = await this.pool.connect();
+    try {
+      const res = await client.query(query);
+      return res.rows;
+    } finally {
+      client.release();
+    }
   }
 }
 
