@@ -1,7 +1,7 @@
 {
   "name": "dbinfoz",
   "types": "index.d.ts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Get Database Info and Table Schemas",
   "main": "src/index.js",
   "scripts": {
