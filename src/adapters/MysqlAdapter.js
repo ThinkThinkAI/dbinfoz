@@ -1,5 +1,6 @@
-const mysql = require("mysql2/promise");
-const DatabaseAdapter = require("./DatabaseAdapter");
+// src/adapters/MysqlAdapter.js
+import mysql from "mysql2/promise";
+import DatabaseAdapter from "./DatabaseAdapter";
 
 class MysqlAdapter extends DatabaseAdapter {
   constructor(config) {
@@ -49,4 +50,4 @@ class MysqlAdapter extends DatabaseAdapter {
   }
 }
 
-module.exports = MysqlAdapter;
+export default MysqlAdapter;

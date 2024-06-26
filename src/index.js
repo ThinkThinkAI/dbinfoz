@@ -1,9 +1,10 @@
-const PostgresAdapter = require("./adapters/PostgresAdapter");
-const MysqlAdapter = require("./adapters/MysqlAdapter");
-const SqliteAdapter = require("./adapters/SqliteAdapter");
+// src/index.js
+import PostgresAdapter from "./adapters/PostgresAdapter";
+import MysqlAdapter from "./adapters/MysqlAdapter";
+import SqliteAdapter from "./adapters/SqliteAdapter";
 
 // Factory function
-function getDatabaseAdapter(type, config) {
+export function getDatabaseAdapter(type, config) {
   switch (type) {
     case "postgres":
       return new PostgresAdapter(config);
@@ -15,5 +16,3 @@ function getDatabaseAdapter(type, config) {
       throw new Error("Unsupported database type");
   }
 }
-
-module.exports = getDatabaseAdapter;

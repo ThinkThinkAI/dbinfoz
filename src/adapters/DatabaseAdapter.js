@@ -1,3 +1,4 @@
+// src/adapters/DatabaseAdapter.js
 class DatabaseAdapter {
   constructor(config) {
     this.config = config; // Store the configuration object
@@ -24,4 +25,4 @@ class DatabaseAdapter {
   }
 }
 
-module.exports = DatabaseAdapter;
+export default DatabaseAdapter;

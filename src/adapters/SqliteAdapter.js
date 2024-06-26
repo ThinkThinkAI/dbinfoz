@@ -1,6 +1,9 @@
-const sqlite3 = require("sqlite3").verbose();
-const { promisify } = require("util");
-const DatabaseAdapter = require("./DatabaseAdapter");
+// src/adapters/SqliteAdapter.js
+import sqlite3 from "sqlite3";
+import { promisify } from "util";
+import DatabaseAdapter from "./DatabaseAdapter";
+
+sqlite3.verbose();
 
 class SqliteAdapter extends DatabaseAdapter {
   constructor(config) {
@@ -62,4 +65,4 @@ class SqliteAdapter extends DatabaseAdapter {
   }
 }
 
-module.exports = SqliteAdapter;
+export default SqliteAdapter;
