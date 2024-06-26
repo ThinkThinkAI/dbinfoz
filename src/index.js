@@ -4,7 +4,7 @@ import MysqlAdapter from "./adapters/MysqlAdapter";
 import SqliteAdapter from "./adapters/SqliteAdapter";
 
 // Factory function
-export function getDatabaseAdapter(type, config) {
+function getDatabaseAdapter(type, config) {
   switch (type) {
     case "postgres":
       return new PostgresAdapter(config);
@@ -16,3 +16,7 @@ export function getDatabaseAdapter(type, config) {
       throw new Error("Unsupported database type");
   }
 }
+
+export { getDatabaseAdapter };
+// For CommonJS compatibility
+module.exports = { getDatabaseAdapter };
