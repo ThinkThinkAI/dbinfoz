@@ -40,11 +40,11 @@ class PostgresAdapter extends DatabaseAdapter {
     const query = `
       SELECT column_name, data_type 
       FROM information_schema.columns 
-      WHERE table_name = $1;
+      WHERE table_name = '${tableName}';
     `;
     const client = await this.pool.connect();
     try {
-      const res = await client.query(query, [tableName]);
+      const res = await client.query(query);
       return res.rows.reduce((schema, row) => {
         schema[row.column_name] = row.data_type;
         return schema;
