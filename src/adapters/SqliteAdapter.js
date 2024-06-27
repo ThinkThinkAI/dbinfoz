@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
 import { promisify } from "util";
-import DatabaseAdapter from "./DatabaseAdapter";
+import DatabaseAdapter from "./DatabaseAdapter.js";
 
 sqlite3.verbose();
 

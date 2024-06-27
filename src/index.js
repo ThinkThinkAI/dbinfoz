@@ -1,6 +1,6 @@
-import PostgresAdapter from "./adapters/PostgresAdapter";
-import MysqlAdapter from "./adapters/MysqlAdapter";
-import SqliteAdapter from "./adapters/SqliteAdapter";
+import PostgresAdapter from "./adapters/PostgresAdapter.js";
+import MysqlAdapter from "./adapters/MysqlAdapter.js";
+import SqliteAdapter from "./adapters/SqliteAdapter.js";
 
 // Factory function
 function getDatabaseAdapter(type, config) {

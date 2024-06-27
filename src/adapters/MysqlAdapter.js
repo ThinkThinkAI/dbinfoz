@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import DatabaseAdapter from "./DatabaseAdapter";
+import DatabaseAdapter from "./DatabaseAdapter.js";
 
 class MysqlAdapter extends DatabaseAdapter {
   constructor(config) {
