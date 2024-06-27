@@ -16,4 +16,4 @@ function getDatabaseAdapter(type, config) {
   }
 }
 
-export default getDatabaseAdapter;
+export { getDatabaseAdapter };
