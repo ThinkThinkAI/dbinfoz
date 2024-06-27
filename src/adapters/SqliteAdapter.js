@@ -1,6 +1,8 @@
-const sqlite3 = require("sqlite3").verbose();
-const { promisify } = require("util");
-const DatabaseAdapter = require("./DatabaseAdapter");
+import sqlite3 from "sqlite3";
+import { promisify } from "util";
+import DatabaseAdapter from "./DatabaseAdapter";
+
+sqlite3.verbose();
 
 class SqliteAdapter extends DatabaseAdapter {
   constructor(config) {
@@ -18,22 +20,22 @@ class SqliteAdapter extends DatabaseAdapter {
 
   async listTables() {
     const query = `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';`;
-    return this.db.all(query).then((rows) => rows.map((row) => row.name));
+    const rows = await this.db.all(query);
+    return rows.map((row) => row.name);
   }
 
   async getTableSchema(tableName) {
     const query = `PRAGMA table_info(${tableName});`;
-    return this.db.all(query).then((rows) =>
-      rows.reduce((schema, { name, type, notnull, dflt_value, pk }) => {
-        schema[name] = {
-          type,
-          nullable: notnull === 0,
-          default: dflt_value,
-          primaryKey: pk !== 0,
-        };
-        return schema;
-      }, {})
-    );
+    const rows = await this.db.all(query);
+    return rows.reduce((schema, { name, type, notnull, dflt_value, pk }) => {
+      schema[name] = {
+        type,
+        nullable: notnull === 0,
+        default: dflt_value,
+        primaryKey: pk !== 0,
+      };
+      return schema;
+    }, {});
   }
 
   async getAllTablesAndSchemas() {
@@ -62,4 +64,4 @@ class SqliteAdapter extends DatabaseAdapter {
   }
 }
 
-module.exports = SqliteAdapter;
+export default SqliteAdapter;

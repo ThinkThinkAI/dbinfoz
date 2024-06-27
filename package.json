@@ -4,6 +4,7 @@
   "version": "0.3.0",
   "description": "Get Database Info and Table Schemas",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
