@@ -1,6 +1,6 @@
-const PostgresAdapter = require("./adapters/PostgresAdapter");
-const MysqlAdapter = require("./adapters/MysqlAdapter");
-const SqliteAdapter = require("./adapters/SqliteAdapter");
+import PostgresAdapter from "./adapters/PostgresAdapter.js";
+import MysqlAdapter from "./adapters/MysqlAdapter.js";
+import SqliteAdapter from "./adapters/SqliteAdapter.js";
 
 // Factory function
 function getDatabaseAdapter(type, config) {
@@ -16,4 +16,4 @@ function getDatabaseAdapter(type, config) {
   }
 }
 
-module.exports = getDatabaseAdapter;
+export { getDatabaseAdapter };

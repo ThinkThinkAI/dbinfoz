@@ -1,5 +1,7 @@
-const { Pool } = require("pg");
-const DatabaseAdapter = require("./DatabaseAdapter");
+import pkg from "pg";
+const { Pool } = pkg;
+
+import DatabaseAdapter from "./DatabaseAdapter.js";
 
 class PostgresAdapter extends DatabaseAdapter {
   constructor(config) {
@@ -72,4 +74,4 @@ class PostgresAdapter extends DatabaseAdapter {
   }
 }
 
-module.exports = PostgresAdapter;
+export default PostgresAdapter;
