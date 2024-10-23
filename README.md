@@ -1,6 +1,6 @@
 # 🌐 DBINFOZ Universal Database Adapter
 
-A simple and unified interface to interact with different types of SQL databases including PostgreSQL, MySQL, and SQLite.
+A simple and unified interface to interact with different types of SQL databases including PostgreSQL, MySQL, MSSQL, and SQLite.
 
 ## ✨ Features
 
@@ -9,7 +9,7 @@ A simple and unified interface to interact with different types of SQL databases
 - 📄 Get the schema of a table
 - 🗂 Get all tables and their schemas within a database
 
-Supports PostgreSQL, MySQL, and SQLite databases.
+Supports PostgreSQL, MySQL, MSSQL, and SQLite databases.
 
 ## 🛠 Installation
 
@@ -43,6 +43,16 @@ const mysqlConfig = {
   port: 3306,
 };
 const mysqlAdapter = getDatabaseAdapter('mysql', mysqlConfig);
+
+// For MSSQL
+const mssqlConfig = {
+  host: 'localhost',
+  user: 'yourUsername',
+  database: 'yourDatabase',
+  password: 'yourPassword',
+  port: 3306,
+};
+const mssqlAdapter = getDatabaseAdapter('mssql', mssqlConfig);
 
 // For SQLite
 const sqliteConfig = {
