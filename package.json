@@ -23,9 +23,9 @@
   "author": "Jason Jacobs",
   "license": "MIT",
   "dependencies": {
+    "mssql": "^11.0.1",
     "mysql2": "^3.9.1",
     "pg": "^8.11.3",
     "sqlite3": "^5.1.7"
-  },
-  "devDependencies": {}
+  }
 }
