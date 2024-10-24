@@ -46,7 +46,7 @@ const mysqlAdapter = getDatabaseAdapter('mysql', mysqlConfig);
 
 // For MSSQL
 const mssqlConfig = {
-  host: 'localhost',
+  server: 'localhost',
   user: 'yourUsername',
   database: 'yourDatabase',
   password: 'yourPassword',
