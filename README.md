@@ -50,7 +50,7 @@ const mssqlConfig = {
   user: 'yourUsername',
   database: 'yourDatabase',
   password: 'yourPassword',
-  port: 3306,
+  port: 1433,
 };
 const mssqlAdapter = getDatabaseAdapter('mssql', mssqlConfig);
 
